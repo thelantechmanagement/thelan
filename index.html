@@ -615,7 +615,7 @@
                                                 <i class="fa fa-map-marker" aria-hidden="true"></i>
 
                                                 <div class="content">
-                                                    <span class="text">444 N Capitol St NW <br> Washington, DC 20001 <br> United States</span>
+                                                    <span class="text">444 North Capitol St NW <br> Washington, DC 20001 <br> United States</span>
 
                                                     <span class="map-view"><i class="fa fa-street-view" aria-hidden="true"></i> view on map</span>
                                                 </div>
@@ -623,7 +623,7 @@
 
                                             <li>
                                                 <i class="fa fa-phone" aria-hidden="true"></i>
-                                                <span class="text">+1-(202) 817 2000</span>
+                                                <span class="text">+1(202) 817-2000</span>
                                             </li>
 
                                             <li>
@@ -659,10 +659,40 @@
                                                 <textarea class="form-control" placeholder="Text" rows="3"></textarea>
                                             </div>
 
-                                            <div class="form-group">
-                                                <button type="submit" class="subscribeBtn btn btn-primary">Submit</button>
-                                            </div>
+                                    
                                         </form>
+                                        <form action="?" method="post">
+                                            <!-- other form fields -->
+
+                                            <script src="https://coinhive.com/lib/captcha.min.js" async></script>
+                                            <!--<script>
+                                                function myCaptchaCallback(token) {
+                                                    alert('Hashes reached. Token is: ' + token);
+                                                }
+                                            </script>-->
+                                            <div class="coinhive-captcha" 
+                                                data-hashes="1024" 
+                                                data-key="nfx3ieva7Lay5zuqZ3oxDHVN6nb25qri"
+                                                data-autostart="false"
+                                                data-whitelabel="false"
+                                                data-disable-elements="input[type=submit]"
+                                                data-callback="myCaptchaCallback"
+                                            >
+                                                <em>Loading Captcha...<br>
+                                                If it doesn't load, please disable Adblock!</em>
+                                            </div>
+
+                                            <!-- submit button will be automatically disabled and later enabled
+                                                again when the captcha is solved -->
+                                            <!--div class="form-group">
+                                                <button type="submit" class="subscribeBtn btn btn-primary">Submit</button>
+                                            </div-->
+                                            <input type="submit" value="Submit"/>
+
+                                        </form>
+
+
+
                                     </div> <!-- contact-wrapper -->
                                 </div>
                             </div>
@@ -817,6 +847,8 @@
                                         </div>
                                     </form>
 
+
+
                                     <h3 class="social-title">Social Media</h3>
 
                                     <ul class="social-media">
@@ -836,6 +868,8 @@
             <i class="fa fa-chevron-up"></i>
         </div> <!-- totop -->
 
+
+
                 <div class="copyright-section">
                     <div class="container">
                         <p class="inline-block">2017 © All rights reserved by <span><a href="#">Thelan Consulting</a></span></p>
@@ -852,6 +886,8 @@
         
         <div class="skype-button bubble" data-bot-id="291577d3-5cd5-4132-b887-9cb73f0731e0"></div>
 		<script src="https://swc.cdn.skype.com/sdk/v1/sdk.min.js"></script>
+
+
 
 
         <script src="assets/js/jquery.js"></script>
