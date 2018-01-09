@@ -2454,6 +2454,40 @@ button,
     background-position: 100% 0; }
   to {
     background-position: 0 0; } }
+
+.finance-section .finance-wrapper.wrapper-five::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../images/f-bg.jpg) no-repeat;
+    opacity: 0;
+    visibility: hidden;
+    z-index: -1;
+    -webkit-transition: 1s;
+    -khtml-transition: 1s;
+    -moz-transition: 1s;
+    -ms-transition: 1s;
+    -o-transition: 1s;
+    transition: 1s;
+    animation: cloud-animation 45s linear infinite;
+    -ms-animation: cloud-animation 45s linear infinite;
+    -moz-animation: cloud-animation 45s linear infinite;
+    -webkit-animation: cloud-animation 45s linear infinite; }
+@-webkit-keyframes cloud-animation {
+  from {
+    background-position: 0 0; }
+  to {
+    background-position: 100% 0; } }
+@keyframes cloud-animation {
+  from {
+    background-position: 0 0; }
+  to {
+    background-position: 100% 0; } }
+
+
   .finance-section .finance-wrapper:hover.wrapper-one::before, .finance-section .finance-wrapper:hover.wrapper-two::before, .finance-section .finance-wrapper:hover.wrapper-three::before {
     opacity: 1;
     visibility: visible; }
