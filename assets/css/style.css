@@ -2050,7 +2050,7 @@ button,
         margin: 16px 0 10px; }
   .contact-section .contact-section-two {
     position: relative;
-    background: url(../images/contact-bg.jpg) no-repeat;
+    background: url(../images/counter-bg.jpg) no-repeat;
     background-position: center 70%;
     background-size: cover;
     background-attachment: fixed;
@@ -2256,9 +2256,9 @@ button,
       -o-transition: 0.5s;
       transition: 0.5s; }
     .business-section .right-content .content-bar li .content-wrapper h3 {
-      font-size: 24px;
-      line-height: 30px;
-      margin: 11px 0 5px; }
+      font-size: 74px;
+      line-height: 50px;
+      margin: 51px 0 5px; }
       .business-section .right-content .content-bar li .content-wrapper h3 a {
         color: #031633;
         -webkit-transition: 0.5s;
