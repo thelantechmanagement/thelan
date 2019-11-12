@@ -7,22 +7,22 @@ jQuery(function ($) {
 	// -------------------------------------------------------------
     // Sticky Menu
     // -------------------------------------------------------------
-	    
-        function stickMenu() {
-            if ($(".navbar").length) {
-                var nav = $('.navbar'),
-                    scrolled = false,
-                    top = $(window).scrollTop();
+    
+    function stickMenu() {
+        if ($(".navbar").length) {
+            var nav = $('.navbar'),
+            scrolled = false,
+            top = $(window).scrollTop();
 
-                if (110 < top && !scrolled) {
-                    nav.addClass('sticky animated fadeInDown');
-                    scrolled = true;
-                } else {
-                    nav.removeClass('sticky animated fadeInDown');
-                    scrolled = false;
-                }
+            if (110 < top && !scrolled) {
+                nav.addClass('sticky animated fadeInDown');
+                scrolled = true;
+            } else {
+                nav.removeClass('sticky animated fadeInDown');
+                scrolled = false;
             }
         }
+    }
 
 
 
@@ -30,34 +30,34 @@ jQuery(function ($) {
     //  	Offcanvas Menu
     // -------------------------------------------------------------
 
-        
-        (function () {
-            var menutoggle = $(".menu-toggle");
-            var offcanvasmenu = $("#offcanvas-menu");
-            var closemenu = $(".close-menu");
+    
+    (function () {
+        var menutoggle = $(".menu-toggle");
+        var offcanvasmenu = $("#offcanvas-menu");
+        var closemenu = $(".close-menu");
 
-            menutoggle.on("click" ,function(){
-                offcanvasmenu.addClass("toggled");
-                return false;
-            });
+        menutoggle.on("click" ,function(){
+            offcanvasmenu.addClass("toggled");
+            return false;
+        });
 
-            closemenu.on("click" ,function() {
-                offcanvasmenu.removeClass("toggled");
-                return false;
-            });
-        }());
+        closemenu.on("click" ,function() {
+            offcanvasmenu.removeClass("toggled");
+            return false;
+        });
+    }());
 
 
 
     // -------------------------------------------------------------
     //  Offcanvas Menu Sub-menu
     // -------------------------------------------------------------
-        if ( $('.dropBar').length) {
-            $('.dropBar').on("click" ,function(){
-                $(this).parent().find('ul').slideToggle();
-                return false;
-            });
-        }
+    if ( $('.dropBar').length) {
+        $('.dropBar').on("click" ,function(){
+            $(this).parent().find('ul').slideToggle();
+            return false;
+        });
+    }
 
 
 
@@ -65,33 +65,33 @@ jQuery(function ($) {
     //      Chat-Box 
     // -------------------------------------------------------------
 
-        (function () {
-            var openbox = $("#open-box");
-            var mailbox = $(".mail-box");
-            var closebox = $(".close-box");
+    (function () {
+        var openbox = $("#open-box");
+        var mailbox = $(".mail-box");
+        var closebox = $(".close-box");
 
-            openbox.on("click" ,function(){
-                mailbox.addClass("active");
-                return false;
-            });
+        openbox.on("click" ,function(){
+            mailbox.addClass("active");
+            return false;
+        });
 
-            closebox.on("click" ,function() {
-                mailbox.removeClass("active");
-                return false;
-            });
-        }());
+        closebox.on("click" ,function() {
+            mailbox.removeClass("active");
+            return false;
+        });
+    }());
 
 
     
     // -------------------------------------------------------------
     // Sub-menu
     // -------------------------------------------------------------
-        if ( $('.dropmenu').length) {
-            $('.dropmenu').on("click" ,function(){
-                $(this).parent().find('ul').slideToggle();
-                return false;
-            });
-        }
+    if ( $('.dropmenu').length) {
+        $('.dropmenu').on("click" ,function(){
+            $(this).parent().find('ul').slideToggle();
+            return false;
+        });
+    }
 
 
 
@@ -99,26 +99,26 @@ jQuery(function ($) {
     //      Single-Page-Menu-Scrolling  Easy Plugin
     // -------------------------------------------------------------
 
-        function singlePageScroll() {
-            $('a.page-scroll').on('click', function(event) {
-                var $anchor = $(this);
-                $('html, body').stop().animate({
-                     scrollTop: $($anchor.attr('href')).offset().top 
-                }, 1500, 'easeInOutExpo');
-                event.preventDefault();
-            });
-        }
+    function singlePageScroll() {
+        $('a.page-scroll').on('click', function(event) {
+            var $anchor = $(this);
+            $('html, body').stop().animate({
+               scrollTop: $($anchor.attr('href')).offset().top 
+           }, 1500, 'easeInOutExpo');
+            event.preventDefault();
+        });
+    }
 
     
     // -------------------------------------------------------------
     //      Home Page Four Top Bar Show
     // -------------------------------------------------------------
 
-        jQuery(function() {
-            $("#link-button").on("click" , function() {
-                $(".top-bar").toggleClass("active");
-            });
+    jQuery(function() {
+        $("#link-button").on("click" , function() {
+            $(".top-bar").toggleClass("active");
         });
+    });
 
 
 
@@ -129,21 +129,21 @@ jQuery(function ($) {
     //      Map/Contact-Box-Remove
     // -------------------------------------------------------------
 
-        (function () {
-            var mapview = $(".map-view");
-            var contactsection = $(".contact-section-one");
-            var formview = $(".form-view");
+    (function () {
+        var mapview = $(".map-view");
+        var contactsection = $(".contact-section-one");
+        var formview = $(".form-view");
 
-            mapview.on("click" ,function() {
-                contactsection.fadeOut('3000');
-                return false;
-            });
+        mapview.on("click" ,function() {
+            contactsection.fadeOut('3000');
+            return false;
+        });
 
-            formview.on("click" ,function() {
-                contactsection.fadeIn('3000');
-                return false;
-            });
-        }());
+        formview.on("click" ,function() {
+            contactsection.fadeIn('3000');
+            return false;
+        });
+    }());
 
 
 
@@ -152,21 +152,21 @@ jQuery(function ($) {
     // Revulation Slider   {slidertwo}
     // ------------------------------------------------------------------
 
-        (function () {
-            $('.tp-banner').revolution({
-                delay:9000,
-                startwidth:1170,
-                startheight:1000,
-                hideThumbs:10,
-                fullWidth:"on",
-                forceFullWidth:"on",
-                onHoverStop:"off",
-                navigationType:"none",
-                navigationStyle:"preview4",
-                spinner:"off",
-                hideTimerBar:"on"
-            });
-        }());
+    (function () {
+        $('.tp-banner').revolution({
+            delay:9000,
+            startwidth:1170,
+            startheight:1000,
+            hideThumbs:10,
+            fullWidth:"on",
+            forceFullWidth:"on",
+            onHoverStop:"off",
+            navigationType:"none",
+            navigationStyle:"preview4",
+            spinner:"off",
+            hideTimerBar:"on"
+        });
+    }());
 
 
 
@@ -175,13 +175,13 @@ jQuery(function ($) {
     //      LightBox-Js
     // -------------------------------------------------------------
 
-        if ($('#lightBox').length) {
-            $('#lightBox').poptrox({
-                usePopupCaption: true,
-                usePopupNav: true,
-                popupPadding: 0
-            });
-        }
+    if ($('#lightBox').length) {
+        $('#lightBox').poptrox({
+            usePopupCaption: true,
+            usePopupNav: true,
+            popupPadding: 0
+        });
+    }
 
 
 
@@ -191,51 +191,51 @@ jQuery(function ($) {
     //      Parallax-Js
     // -------------------------------------------------------------
 
-        function bgParallax() {
-            if ($(".parallax-section").length) {
-                $(".parallax-section").each(function() {
-                    var height = $(this).position().top;
-                    var resize     = height - $(window).scrollTop();
-                    var doParallax = -(resize/5);
-                    var positionValue   = doParallax + "px";
-                    var img = $(this).data("bg-image");
+    function bgParallax() {
+        if ($(".parallax-section").length) {
+            $(".parallax-section").each(function() {
+                var height = $(this).position().top;
+                var resize     = height - $(window).scrollTop();
+                var doParallax = -(resize/5);
+                var positionValue   = doParallax + "px";
+                var img = $(this).data("bg-image");
 
-                    $(this).css({
-                        backgroundImage: "url(" + img + ")",
-                        backgroundPosition: "50%" + positionValue,
-                        backgroundSize: "cover"
-                    });
+                $(this).css({
+                    backgroundImage: "url(" + img + ")",
+                    backgroundPosition: "50%" + positionValue,
+                    backgroundSize: "cover"
                 });
-            }
+            });
         }
+    }
 
-        
+    
 
 
     // -------------------------------------------------------------
     //  	expert-Slider
     // -------------------------------------------------------------
 
-        if ($('.expert-carousel').length) {
-            $('.expert-carousel').owlCarousel({
-                loop:true,
-                autoplay:true,
-                margin:20,
-                items:3,
-                nav:false,
-                responsive:{
-                    0:{
-                        items:1
-                    },
-                    600:{
-                        items:2
-                    },
-                    1000:{
-                        items:3
-                    }
+    if ($('.expert-carousel').length) {
+        $('.expert-carousel').owlCarousel({
+            loop:true,
+            autoplay:true,
+            margin:20,
+            items:3,
+            nav:false,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:2
+                },
+                1000:{
+                    items:3
                 }
-            });
-        }
+            }
+        });
+    }
 
 
 
@@ -243,43 +243,43 @@ jQuery(function ($) {
     //      service-Slider
     // -------------------------------------------------------------
 
-        if ($('.service-carousel').length) {
-            $('.service-carousel').owlCarousel({
-                loop:true,
-                autoplay:true,
-                margin:20,
-                items:3,
-                nav:false,
-                responsive:{
-                    0:{
-                        items:1
-                    },
-                    600:{
-                        items:2
-                    },
-                    1000:{
-                        items:3
-                    }
+    if ($('.service-carousel').length) {
+        $('.service-carousel').owlCarousel({
+            loop:true,
+            autoplay:true,
+            margin:20,
+            items:3,
+            nav:false,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:2
+                },
+                1000:{
+                    items:3
                 }
-            });
-        }
+            }
+        });
+    }
 
 
 
     // -------------------------------------------------------------
     //      Progress Bar
     // -------------------------------------------------------------
-     
-        function progressBar() {
-            $('.progressSection').on('inview', function(event, visible, visiblePartX, visiblePartY) {
-                if (visible) {
-                    $.each($('div.progress-bar'),function(){
-                        $(this).css('width', $(this).attr('aria-valuenow')+'%');
-                    });
-                    $(this).off('inview');
-                }
-            });
-        }
+    
+    function progressBar() {
+        $('.progressSection').on('inview', function(event, visible, visiblePartX, visiblePartY) {
+            if (visible) {
+                $.each($('div.progress-bar'),function(){
+                    $(this).css('width', $(this).attr('aria-valuenow')+'%');
+                });
+                $(this).off('inview');
+            }
+        });
+    }
 
 
 
@@ -343,26 +343,26 @@ jQuery(function ($) {
     //-------------------------------------------------------
     //  	counter Section
     //-------------------------------------------------------
-       
-        function funFactCounting() {
-            if ($('.counting-section').length) {
-                $('.counting-section').on('inview', function(event, visible, visiblePartX, visiblePartY) {
-                    if (visible) {
-                        $(this).find('.timer').each(function () {
-                            var $this = $(this);
-                            $({ Counter: 0 }).animate({ Counter: $this.text() }, {
-                                duration: 2000,
-                                easing: 'swing',
-                                step: function () {
-                                    $this.text(Math.ceil(this.Counter));
-                                }
-                            });
+    
+    function funFactCounting() {
+        if ($('.counting-section').length) {
+            $('.counting-section').on('inview', function(event, visible, visiblePartX, visiblePartY) {
+                if (visible) {
+                    $(this).find('.timer').each(function () {
+                        var $this = $(this);
+                        $({ Counter: 0 }).animate({ Counter: $this.text() }, {
+                            duration: 2000,
+                            easing: 'swing',
+                            step: function () {
+                                $this.text(Math.ceil(this.Counter));
+                            }
                         });
-                        $(this).unbind('inview');
-                    }
-                });
-            }
+                    });
+                    $(this).unbind('inview');
+                }
+            });
         }
+    }
 
 
 
@@ -370,11 +370,11 @@ jQuery(function ($) {
     //      Google Map
     // -------------------------------------------------------------
 
-        if ($('#googleMap').length) {
-            google.maps.event.addDomListener(window, 'load', init);
-            
-            function init() {
-                var mapOptions = {
+    if ($('#googleMap').length) {
+        google.maps.event.addDomListener(window, 'load', init);
+        
+        function init() {
+            var mapOptions = {
                     // How zoomed in you want the map to start at (always required)
                     zoom: 12,
 
@@ -383,20 +383,20 @@ jQuery(function ($) {
 
                     // This is where you would paste any style found on Snazzy Maps.
                     styles: [{"featureType": "all","elementType": "labels.text.fill","stylers": [{"saturation": 36},{"color": "#333333"},{"lightness": 40}]},
-                            {"featureType": "all","elementType": "labels.text.stroke","stylers": [{"visibility": "on"},{"color": "#ffffff"},{"lightness": 16}]},
-                            {"featureType": "all","elementType": "labels.icon","stylers": [{"visibility": "off"}]},
-                            {"featureType": "administrative","elementType": "geometry.fill","stylers": [{"color": "#fefefe"},{"lightness": 20}]},
-                            {"featureType": "administrative","elementType": "geometry.stroke","stylers": [{"color": "#fefefe"},{"lightness": 17},{"weight": 1.2}]},
-                            {"featureType": "landscape","elementType": "geometry","stylers": [{"color": "#f5f5f5"},{"lightness": 20}]},
-                            {"featureType": "poi","elementType": "geometry","stylers": [{"color": "#f5f5f5"},{"lightness": 21}]},
-                            {"featureType": "poi.park","elementType": "geometry","stylers": [{"color": "#dedede"},{"lightness": 21}]},
-                            {"featureType": "road.highway","elementType": "geometry.fill","stylers": [{"color": "#ffffff"},{"lightness": 17}]},
-                            {"featureType": "road.highway","elementType": "geometry.stroke","stylers": [{"color": "#ffffff"},{"lightness": 29},{"weight": 0.2}]},
-                            {"featureType": "road.arterial","elementType": "geometry","stylers": [{"color": "#ffffff"},{"lightness": 18}]},
-                            {"featureType": "road.local","elementType": "geometry","stylers": [{"color": "#ffffff"},{"lightness": 16}]},
-                            {"featureType": "transit","elementType": "geometry","stylers": [{"color": "#f2f2f2"},{"lightness": 19}]},
-                            {"featureType": "water","elementType": "geometry","stylers": [{"color": "#e9e9e9"},{"lightness": 17}]},
-                            {"featureType": "water","elementType": "geometry.fill","stylers": [{"color": "#54be73"}]}]};
+                    {"featureType": "all","elementType": "labels.text.stroke","stylers": [{"visibility": "on"},{"color": "#ffffff"},{"lightness": 16}]},
+                    {"featureType": "all","elementType": "labels.icon","stylers": [{"visibility": "off"}]},
+                    {"featureType": "administrative","elementType": "geometry.fill","stylers": [{"color": "#fefefe"},{"lightness": 20}]},
+                    {"featureType": "administrative","elementType": "geometry.stroke","stylers": [{"color": "#fefefe"},{"lightness": 17},{"weight": 1.2}]},
+                    {"featureType": "landscape","elementType": "geometry","stylers": [{"color": "#f5f5f5"},{"lightness": 20}]},
+                    {"featureType": "poi","elementType": "geometry","stylers": [{"color": "#f5f5f5"},{"lightness": 21}]},
+                    {"featureType": "poi.park","elementType": "geometry","stylers": [{"color": "#dedede"},{"lightness": 21}]},
+                    {"featureType": "road.highway","elementType": "geometry.fill","stylers": [{"color": "#ffffff"},{"lightness": 17}]},
+                    {"featureType": "road.highway","elementType": "geometry.stroke","stylers": [{"color": "#ffffff"},{"lightness": 29},{"weight": 0.2}]},
+                    {"featureType": "road.arterial","elementType": "geometry","stylers": [{"color": "#ffffff"},{"lightness": 18}]},
+                    {"featureType": "road.local","elementType": "geometry","stylers": [{"color": "#ffffff"},{"lightness": 16}]},
+                    {"featureType": "transit","elementType": "geometry","stylers": [{"color": "#f2f2f2"},{"lightness": 19}]},
+                    {"featureType": "water","elementType": "geometry","stylers": [{"color": "#e9e9e9"},{"lightness": 17}]},
+                    {"featureType": "water","elementType": "geometry.fill","stylers": [{"color": "#54be73"}]}]};
 
                             // Get the HTML DOM element that will contain your map 
                             var mapElement = document.getElementById('googleMap');
@@ -410,16 +410,16 @@ jQuery(function ($) {
                                 map: map,
                                 title: 'Snazzy!'
                             });
-            }
-        }
+                        }
+                    }
 
 
 
-        if ($('#menuMap').length) {
-            google.maps.event.addDomListener(window, 'load', init);
-            
-            function init() {
-                var mapOptions = {
+                    if ($('#menuMap').length) {
+                        google.maps.event.addDomListener(window, 'load', init);
+                        
+                        function init() {
+                            var mapOptions = {
                     // How zoomed in you want the map to start at (always required)
                     zoom: 12,
 
@@ -429,20 +429,20 @@ jQuery(function ($) {
                     // How you would like to style the map. 
                     // This is where you would paste any style found on Snazzy Maps.
                     styles: [{"featureType": "all","elementType": "labels.text.fill","stylers": [{"saturation": 36},{"color": "#333333"},{"lightness": 40}]},
-                            {"featureType": "all","elementType": "labels.text.stroke","stylers": [{"visibility": "on"},{"color": "#ffffff"},{"lightness": 16}]},
-                            {"featureType": "all","elementType": "labels.icon","stylers": [{"visibility": "off"}]},
-                            {"featureType": "administrative","elementType": "geometry.fill","stylers": [{"color": "#fefefe"},{"lightness": 20}]},
-                            {"featureType": "administrative","elementType": "geometry.stroke","stylers": [{"color": "#fefefe"},{"lightness": 17},{"weight": 1.2}]},
-                            {"featureType": "landscape","elementType": "geometry","stylers": [{"color": "#f5f5f5"},{"lightness": 20}]},
-                            {"featureType": "poi","elementType": "geometry","stylers": [{"color": "#f5f5f5"},{"lightness": 21}]},
-                            {"featureType": "poi.park","elementType": "geometry","stylers": [{"color": "#dedede"},{"lightness": 21}]},
-                            {"featureType": "road.highway","elementType": "geometry.fill","stylers": [{"color": "#ffffff"},{"lightness": 17}]},
-                            {"featureType": "road.highway","elementType": "geometry.stroke","stylers": [{"color": "#ffffff"},{"lightness": 29},{"weight": 0.2}]},
-                            {"featureType": "road.arterial","elementType": "geometry","stylers": [{"color": "#ffffff"},{"lightness": 18}]},
-                            {"featureType": "road.local","elementType": "geometry","stylers": [{"color": "#ffffff"},{"lightness": 16}]},
-                            {"featureType": "transit","elementType": "geometry","stylers": [{"color": "#f2f2f2"},{"lightness": 19}]},
-                            {"featureType": "water","elementType": "geometry","stylers": [{"color": "#e9e9e9"},{"lightness": 17}]},
-                            {"featureType": "water","elementType": "geometry.fill","stylers": [{"color": "#54be73"}]}]};
+                    {"featureType": "all","elementType": "labels.text.stroke","stylers": [{"visibility": "on"},{"color": "#ffffff"},{"lightness": 16}]},
+                    {"featureType": "all","elementType": "labels.icon","stylers": [{"visibility": "off"}]},
+                    {"featureType": "administrative","elementType": "geometry.fill","stylers": [{"color": "#fefefe"},{"lightness": 20}]},
+                    {"featureType": "administrative","elementType": "geometry.stroke","stylers": [{"color": "#fefefe"},{"lightness": 17},{"weight": 1.2}]},
+                    {"featureType": "landscape","elementType": "geometry","stylers": [{"color": "#f5f5f5"},{"lightness": 20}]},
+                    {"featureType": "poi","elementType": "geometry","stylers": [{"color": "#f5f5f5"},{"lightness": 21}]},
+                    {"featureType": "poi.park","elementType": "geometry","stylers": [{"color": "#dedede"},{"lightness": 21}]},
+                    {"featureType": "road.highway","elementType": "geometry.fill","stylers": [{"color": "#ffffff"},{"lightness": 17}]},
+                    {"featureType": "road.highway","elementType": "geometry.stroke","stylers": [{"color": "#ffffff"},{"lightness": 29},{"weight": 0.2}]},
+                    {"featureType": "road.arterial","elementType": "geometry","stylers": [{"color": "#ffffff"},{"lightness": 18}]},
+                    {"featureType": "road.local","elementType": "geometry","stylers": [{"color": "#ffffff"},{"lightness": 16}]},
+                    {"featureType": "transit","elementType": "geometry","stylers": [{"color": "#f2f2f2"},{"lightness": 19}]},
+                    {"featureType": "water","elementType": "geometry","stylers": [{"color": "#e9e9e9"},{"lightness": 17}]},
+                    {"featureType": "water","elementType": "geometry.fill","stylers": [{"color": "#54be73"}]}]};
 
                             // Get the HTML DOM element that will contain your map 
                             var mapElement = document.getElementById('menuMap');
@@ -456,8 +456,8 @@ jQuery(function ($) {
                                 map: map,
                                 title: 'Snazzy!'
                             });
-            }
-        }
+                        }
+                    }
 
 
 
@@ -465,31 +465,31 @@ jQuery(function ($) {
     // Back To Top
     // -------------------------------------------------------------
 
-        function backToTopBtnAppear() {
-            if ($("#toTop").length) {
-                var windowpos = $(window).scrollTop(),
-                    backToTopBtn = $("#toTop");
+    function backToTopBtnAppear() {
+        if ($("#toTop").length) {
+            var windowpos = $(window).scrollTop(),
+            backToTopBtn = $("#toTop");
 
-                if (windowpos > 300) {
-                    backToTopBtn.fadeIn();
-                } else {
-                   backToTopBtn.fadeOut();
-                }
-            }
-        }
+            if (windowpos > 300) {
+                backToTopBtn.fadeIn();
+            } else {
+             backToTopBtn.fadeOut();
+         }
+     }
+ }
 
-        function backToTop() {
-            if ($("#toTop").length) {
-                var backToTopBtn = $("#toTop");
-                backToTopBtn.on("click", function() {
-                    $("html, body").animate({
-                        scrollTop: 0
-                    }, 1000);
-                    
-                    return false;
-                })
-            }
-        }
+ function backToTop() {
+    if ($("#toTop").length) {
+        var backToTopBtn = $("#toTop");
+        backToTopBtn.on("click", function() {
+            $("html, body").animate({
+                scrollTop: 0
+            }, 1000);
+            
+            return false;
+        })
+    }
+}
 
 
 
@@ -498,12 +498,12 @@ jQuery(function ($) {
     // 		Preloader
     // -------------------------------------------------------------
 
-        function preloader() {
-            if ($('#preloader').length) {
-                $('#preloader').delay(500).fadeOut('slow');
-            }
+    function preloader() {
+        if ($('#preloader').length) {
+            $('#preloader').delay(500).fadeOut('slow');
         }
- 
+    }
+    
 
 
 
@@ -511,35 +511,58 @@ jQuery(function ($) {
     //      WHEN WINDOW LOAD
     // -------------------------------------------------------------
 
-        $(window).on("load", function() {
+    $(window).on("load", function() {
 
-            backToTop();
+        backToTop();
 
-            preloader();
+        preloader();
 
-            new WOW().init();
+        new WOW().init();
 
-            funFactCounting();
+        funFactCounting();
 
-            progressBar();
+        progressBar();
 
-            bgParallax();
-        })
+        bgParallax();
+    })
 
 
 
     // -------------------------------------------------------------
     //      WHEN WINDOW SCROLL
     // -------------------------------------------------------------
-        $(window).on("scroll", function() {
+    $(window).on("scroll", function() {
 
-            stickMenu();
+        stickMenu();
 
-            backToTopBtnAppear();
+        backToTopBtnAppear();
 
-            singlePageScroll();
+        singlePageScroll();
 
-            bgParallax();
+        bgParallax();
+    });
+
+
+    $( document ).ready(function() {
+
+        $( ".cross" ).hide();
+        $( ".menu" ).hide();
+        $( ".hamburger" ).click(function() {
+            $( ".menu" ).slideToggle( "slow", function() {
+                $( ".hamburger" ).hide();
+                $( ".cross" ).show();
+            });
         });
+
+        $( ".cross" ).click(function() {
+            $( ".menu" ).slideToggle( "slow", function() {
+                $( ".cross" ).hide();
+                $( ".hamburger" ).show();
+            });
+        });
+
+    });
+
+
 
 });   // Jquery-End
