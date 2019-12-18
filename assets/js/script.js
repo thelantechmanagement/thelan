@@ -338,6 +338,11 @@ jQuery(function ($) {
 
         styleSwitcher();*/
 
+$( "#overlay" ).click(function() {
+  $( ".menu" ).slideToggle( "slow", function() {
+    // Animation complete.
+  });
+});
 
 
     //-------------------------------------------------------
