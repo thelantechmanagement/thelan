@@ -1,0 +1,363 @@
+
+<!-- saved from url=(0011)about:blank -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript">function pcpitstop()
+{
+    var debuggingOn = false;
+    var serverAddress = "https://utilities.pcpitstop.com";
+
+    //@ sourceUrl=pcpitstopinjected.js
+    var loggingOn = false;
+    function log(message)
+    {
+        if(loggingOn) console.log(message);
+    }
+
+    var aspLocation =  serverAddress + "/plugin/embedded_message.html";
+    var landingPage =  serverAddress + "/plugin/infinitealert/default.asp";
+    var systemAlert = window.alert;
+    var systemConfirm = window.confirm;
+    
+    window.alert = function alert(msg) {
+	if(debuggingOn) debugger;
+	return handleAlert(window.location.href, msg);
+    }; 
+    
+    window.confirm = function confirm(msg) {
+	return handleConfirm(window.location.href, msg); 
+    }; 
+
+    var alertCount = 0;
+    var confirmCount = 0;
+    var maxAlertCount = 35;
+    var drewNotice = false;    
+ 
+    function handleAlert(url, message)
+    {
+        alertCount = alertCount + 1;
+	var alertInfo = {'url':url,'message':message};
+        if(!isMaliciousPage(alertInfo, 0)) {return systemAlert(message);}
+	else exitMaliciousPage(alertInfo);
+    };
+    
+    function handleConfirm(url, message)
+    {
+        confirmCount = confirmCount + 1;
+	var alertInfo = {'url':url,'message':message};
+        if(!isMaliciousPage(alertInfo, 1)) {return systemConfirm(message);}
+	else exitMaliciousPage(alertInfo, message);
+    };
+
+    function blockingPost(url, form)
+    {
+	var xhr = new XMLHttpRequest();
+	var postData = "";
+
+	var seperator = "";
+	for(key in form)
+	{
+	    postData = postData + seperator + key + "=" + encodeURIComponent(form[key]);
+	    seperator = "&";
+	}
+	var xhr = new XMLHttpRequest();
+
+	xhr.open("POST", url, false);
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhr.send(postData);
+	finalValue = JSON.parse(xhr.responseText);
+
+	return finalValue;
+    }
+    
+    function checkWithServerToBlock(alertInfo, phone)
+    {
+	var devID="";
+	var cid="";
+	if(RunningChromeOS())
+	{
+		var elem = document.getElementById("__ChromeDeviceID_PCM");
+		if(elem){
+			var si = JSON.parse(elem.value);
+			if(si)
+				devID=si.deviceID;
+		}
+	}
+	
+	//if((typeof(chrome)!=="undefined") || (typeof(browser)!=="undefined"))
+	{
+		var elem = document.getElementById("__CID_PCM");
+		if(elem){
+			cid=elem.value;
+		}
+	}
+	
+	var whitelistResponse = blockingPost(serverAddress + "/plugin/check-whitelist_v2.asp",
+					     {
+						 'req': 'check_whitelist',
+						 'url': alertInfo.url,
+						 'phone': phone,
+						 'message': alertInfo.message,
+						 'deviceID': devID,
+						 'CID': cid
+					     }
+					    );
+	return(whitelistResponse.block?whitelistResponse.block:false);
+    }
+    function shortcutServerCalls(alertInfo)
+    {
+	try { if(alertInfo.message.length < 250) {return false;}} catch(e) {};
+	var messageRegexes = [
+		/Daily Planning/,
+		/is starting at/,
+ 	    	/the callback is/,
+	    	/enter a valid/,
+	    	/Refunded order/,
+	    	/An unexpected error/,
+	    	/All answered questions saved/
+	];
+	for(regex of messageRegexes)
+	{
+	    if(regex.test(alertInfo.message)) return true;
+	}
+
+	var urlRegexes = [
+		/calendar\.google\.com/,
+	        /carttools\.pcpitstop\.com/	
+	];
+
+	for(regex of urlRegexes)
+	{
+	    if(regex.test(alertInfo.url)) return true;
+	}
+	return false;
+    }
+    function getPhoneNumber(message)
+    {
+	var rpn = /((\d{3}[\|\-\t \.]?\d{3}[\|\-\t \.]\d{4})|([\(]?\d{3}[\)]?[\t ]*\d{3}[\.\t \-]?\d{4})|([+]?\d[\t \-\.]?\d{3}[\t \-\.]?\d{3}[\t \-\.]?\d{4})|([+]?\d[\t ]?[\(]?\d{3}[\)]?[\t ]*\d{3}[\.\t \-]?\d{4}))/;
+        var matches = rpn.exec(message);
+	var phone=false;
+	if( matches && matches.length>0) {
+	    phone = matches[0];
+	}
+	return phone;
+    }
+    function isMaliciousPage(alertInfo) {
+	if(shortcutServerCalls(alertInfo)) return false;
+        if(alertCount > maxAlertCount) return true;
+        if(confirmCount > maxAlertCount) return true;
+	var phone = getPhoneNumber(alertInfo.message);
+	if (phone) return checkWithServerToBlock(alertInfo, phone)
+	return false;
+    }
+     
+    function exitMaliciousPage(alertInfo) {
+	try {
+	    if(typeof document.webkitExitFullscreen === "function"){	/* chrome, opera, safari, edge */
+		document.documentElement.webkitRequestFullscreen = function(){return true;};
+		document.webkitRequestFullscreen = function(){return true;};
+		document.webkitExitFullscreen();
+	    }
+	    else if(typeof document.exitFullscreen === "function"){ /* newer firefox */
+		document.documentElement.requestFullscreen = function(){return true;};
+		document.requestFullscreen = function(){return true;};
+		document.exitFullscreen();
+	    }
+	    else if(typeof document.mozCancelFullScreen === "function"){	/* older firefox */
+		document.documentElement.mozRequestFullscreen = function(){return true;};
+		document.mozRequestFullscreen = function(){return true;};
+		document.mozCancelFullScreen();
+	    }
+	    else if(typeof document.msExitFullscreen === "function"){ /* IE */
+		document.documentElement.msRequestFullscreen = function(){return true;};
+		document.msRequestFullscreen = function(){return true;};
+		document.msExitFullscreen();
+	    }
+	    window.onbeforeunload = null;
+	}
+	catch(err){}	
+	var repUrl =landingPage+"?url="+encodeURIComponent(alertInfo.url)
+				+"&phone="+encodeURIComponent(getPhoneNumber(alertInfo.message));
+	window.location.replace(repUrl);
+	if(forceReplace ){
+		throw "forcing replace";
+	}
+	forceReplace=true;
+    }
+	var forceReplace=false;
+	
+	function RunningChromeOS(){
+		
+		// see https://stackoverflow.com/questions/4565112/javascript-how-to-find-out-if-the-user-browser-is-chrome/13348618#13348618
+		var isChromium = window.chrome,
+			winNav = window.navigator,
+			vendorName = winNav.vendor,
+			isOpera = winNav.userAgent.indexOf("OPR") > -1,
+			isIEedge = winNav.userAgent.indexOf("Edge") > -1,
+			isIOSChrome = winNav.userAgent.match("CriOS"),
+			isChromeOS = winNav.userAgent.indexOf("CrOS ")>-1;
+
+		if (isIOSChrome) {
+		   // is Google Chrome on IOS
+		   return false;
+		} 
+		else if (isChromium !== null &&
+		  typeof isChromium !== "undefined" &&
+		  vendorName === "Google Inc." &&
+		  isOpera === false &&
+		  isIEedge === false && 
+		  isChromeOS === true) 
+		{
+		   // is Google Chrome
+
+		   return true;
+		} 
+		
+		
+		return false;
+	}
+
+	function setCookie(cname, cvalue, exdays) {
+		var d = new Date();
+		d.setTime(d.getTime() + (exdays*24*60*60*1000));
+		var expires = "expires="+ d.toUTCString();
+		document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+	}
+
+	function getCookie(cname) {
+		var name = cname + "=";
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(';');
+		for(var i = 0; i <ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+			}
+			if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+			}
+		}
+		return "";
+	}
+	// are we Chrome on ChromeOS
+	function checkLicense(href)	{
+		
+		if(href=="about:blank") return;
+		
+		try
+		{
+			if(RunningChromeOS())
+			{
+				var devID="";
+				var elem = document.getElementById("__ChromeDeviceID_PCM");
+				if(elem){
+					var si = JSON.parse(elem.value);
+					if(si)
+						devID=si.deviceID;
+				}
+				
+				if((devID!="") && (href!="about:blank"))
+				{
+					var d = new Date();
+					var nextCheck = getCookie("ChromeLicenseCheck");
+					
+					// if there is no cookie or the value is less than now, do a check
+					if((typeof(nextCheck)==="undefined") || nextCheck===null || (nextCheck==="") || (new Date(nextCheck)<d))
+					{
+						checkServerForLicense(devID,href,si);
+					}
+				}
+			}
+		}
+		catch(err) 
+		{
+			// ignore
+			log(err.message);
+		}
+		
+	}
+
+	function checkServerForLicense(deviceId, href, sysinfo) {
+		
+		// if we get here then we are we chrome running on ChromeOS and we were force installed so we can phone home
+		var licenseCheckResponse;
+		var isLicensed=false;
+		var d = new Date();
+		try {
+    
+			licenseCheckResponse= blockingPost(serverAddress + "/plugin/check_chrome_license.asp",
+				{
+				'req': 'check_license',
+				'deviceID': deviceId,
+				'url': href,
+				'dispW': screen.width,
+				'dispH': screen.height,
+				'bpp': screen.pixelDepth,
+				'logProc': window.navigator.hardwareConcurrency,
+				'cpu': sysinfo.cpu,
+				'memory': sysinfo.memory,
+				'extensions': JSON.stringify(sysinfo.extensions),
+				'platform': JSON.stringify(sysinfo.platform)
+				}
+			);
+	
+			isLicensed = licenseCheckResponse.isLicensed!=null?licenseCheckResponse.isLicensed=="true":false;
+		}
+		catch(err){
+			log(err.message);
+		}
+		var cnt=0;
+		if(isLicensed)
+		{
+			// set the next check for 1 day from now
+			d.setTime(d.getTime() + (1*24*60*60*1000));
+			setCookie("ChromeLicenseCheck",d.toUTCString(),1);
+			setCookie("ChromeLicenseCheckFailures",cnt,1);
+		}
+		else
+		{
+			var cf = getCookie("ChromeLicenseCheckFailures");
+			try{
+				if(typeof(cf)!=="undefined" && cf!="NaN"){
+					cnt = Number.parseInt(cf);
+				}
+				if(isNaN(cnt)) cnt=0;
+			}
+			catch(err){}
+			cnt++;
+			// set the next check for 8 hrs from now
+			d.setTime(d.getTime() + (8*60*60*1000));
+			setCookie("ChromeLicenseCheck",d.toUTCString(),1);
+			setCookie("ChromeLicenseCheckFailures",cnt,1);
+		}
+		EnablePlugin(cnt<=4);	// enable if cnt<=4
+    }    
+
+	function EnablePlugin(flag)	{
+		// chrome.management is only available in the background so send a message to the listener in the background
+		//chrome.management.setEnabled(chrome.i18n.getMessage("@@extension_id"), flag);
+		document.dispatchEvent(flag?evtEnable:evtDisable);
+	}
+
+	if(debuggingOn) debugger;
+
+	//if((typeof(chrome)!=="undefined") || (typeof(browser)!=="undefined"))
+	{
+		var evtGetCID = document.createEvent('Event');
+		evtGetCID.initEvent("get_cid");
+		document.dispatchEvent(evtGetCID);
+	}
+	
+	if(RunningChromeOS()){
+		var evtEnable = document.createEvent('Event');
+		evtEnable.initEvent("enable_me");
+		var evtDisable = document.createEvent('Event');
+		evtDisable.initEvent("disable_me");
+		var evtGetDevice = document.createEvent('Event');
+		evtGetDevice.initEvent("get_device");
+
+		// get the device ID
+		document.dispatchEvent(evtGetDevice);
+		var href = window.location.href;
+		setTimeout(function(){checkLicense(href);},2000);	// initial check.  We have to yield to the message loop so our event will fire
+		setInterval(function(){checkLicense(href);},20*60*1000);	// license check every 20 minutes
+	}
+};pcpitstop();</script><style></style></head><body></body><input id="__ChromeDeviceID_PCM" type="hidden"><input id="__CID_PCM" type="hidden"></html>
