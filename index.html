@@ -780,7 +780,16 @@
      <input type="text" class="form-control" id="inputName" placeholder="Name">
    </div>
 
-
+   <!--[if lte IE 8]>
+   <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+   <![endif]-->
+   <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+   <script>
+     hbspt.forms.create({
+   	portalId: "8366553",
+   	formId: "d9b51db7-8fa5-4e28-bc33-5afbfa911036"
+   });
+   </script>
 
    <div class="form-group">
      <input class="contactSearchBar" value="Email" onblur="if(this.value=='')this.value='Email'" onfocus="if(this.value=='Email')this.value=''" id="contactSearchBar" name="email" type="email">
